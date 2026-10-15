@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llama-index-readers-mesharc"
+version = "0.1.0"
+description = "LlamaIndex reader for MeshArc: web pages, crawls, sitemaps and change records as Documents."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+dependencies = ["llama-index-core>=0.13,<0.15", "mesharc>=0.6,<1"]
+
+keywords = ["llama-index", "llamaindex", "mesharc", "web-scraping", "crawler", "reader", "rag", "markdown", "change-detection"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Typing :: Typed",
+  "Operating System :: OS Independent",
+  "Topic :: Internet :: WWW/HTTP",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "build", "twine", "ruff>=0.16", "mypy>=1.18"]
+
+[project.urls]
+Homepage = "https://mesharc.dev"
+Documentation = "https://github.com/mesharc-org/llama-index-readers-mesharc#readme"
+Source = "https://github.com/mesharc-org/llama-index-readers-mesharc"
+Issues = "https://github.com/mesharc-org/llama-index-readers-mesharc/issues"
+Privacy = "https://mesharc.dev/legal/privacy"
+
+[tool.setuptools.packages.find]
+include = ["llama_index.readers.mesharc*"]
+namespaces = true
+
+[tool.setuptools.package-data]
+"llama_index.readers.mesharc" = ["py.typed"]
+
+[tool.llamahub]
+contains_example = false
+import_path = "llama_index.readers.mesharc"
+
+[tool.llamahub.class_authors]
+MeshArcReader = "mesharc-org"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+target-version = "py310"
+extend-exclude = [".venv*"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+
+[tool.mypy]
+python_version = "3.10"
+files = ["llama_index/readers/mesharc"]
+namespace_packages = true
+explicit_package_bases = true
